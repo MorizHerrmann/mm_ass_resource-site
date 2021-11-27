@@ -50,7 +50,7 @@ class Environment:
 
     def extrapolate2sites(self, input_file, output_dir):
         """
-        add geostrophic wind to data
+        i think this is obsolete, because it extrapolates each event independently
         :param input_file: file name
         :return:
         """

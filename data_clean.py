@@ -1,8 +1,8 @@
 
 import numpy as np
 
-org_data = 'sprog.tsv'
-out_name = 'sporg.csv'
+org_data = 'data/sprogo.tsv'
+out_name = 'data/sprogo.csv'
 
 data = np.loadtxt(org_data)
 

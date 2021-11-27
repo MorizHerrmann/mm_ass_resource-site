@@ -6,8 +6,8 @@ import pandas as pd
 
 # INPUTS ###############################################################################################################
 
-base = 'data/max/'
-site = 'nyborg'
+base = 'data/all/'
+site = 'sprogo'
 
 whole_data_file = base + site + '.csv'
 sect_dir = base + site + '_sec/'

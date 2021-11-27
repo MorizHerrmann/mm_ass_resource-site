@@ -25,7 +25,7 @@ cases = ['all']
 for j, case in enumerate(cases):
     print('\n' + case)
 
-    A_org, k, f = load_data('data/' + case + '/sprog_afk.csv')
+    A_org, k, f = load_akf('data/' + case + '/sprog_afk.csv')
     aep_sprogo = Env.AEP(A_org, k, f)
     aep[0, j] = aep_sprogo
     aep_var[0, j] = aep_sprogo

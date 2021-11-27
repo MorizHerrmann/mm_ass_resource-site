@@ -16,13 +16,14 @@ Env = Environment()
 
 aep = np.zeros((3, 3))
 
-cases = ['all', 'max', 'min']
+# cases = ['all', 'max', 'min']
+cases = ['all']
 
 # loop over sites and cases
 for j, case in enumerate(cases):
     print('\n' + case)
 
-    A_org, k, f = load_data('data/' + case + '/sprog_afk.csv')
+    A_org, k, f = load_akf('data/' + case + '/sprogo_akf.csv')
     aep_sprogo = Env.AEP(A_org, k, f)
     aep[0, j] = aep_sprogo
 
@@ -39,6 +40,7 @@ for j, case in enumerate(cases):
 
         # log law
         u = np.multiply(np.divide(uf, Env.karman), np.log(Env.z_hub / z0))
+        print(u)
 
         # weibull constants
         A = np.divide(u, gamma(1 + 1 / k))

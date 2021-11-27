@@ -15,9 +15,9 @@ Env = Environment()
 
 # ALL YEARS WITH SPROGO ################################################################################################
 
-aep_all_sprogo_abs = Env.AEP(*load_data('data/all/sprog_afk.csv'))
-aep_all_nyborg_abs = Env.AEP(*load_data('data/all/nyborg_afk.csv'))
-aep_all_korsor_abs = Env.AEP(*load_data('data/all/korsor_afk.csv'))
+aep_all_sprogo_abs = Env.AEP(*load_akf('data/all/sprog_afk.csv'))
+aep_all_nyborg_abs = Env.AEP(*load_akf('data/all/nyborg_afk.csv'))
+aep_all_korsor_abs = Env.AEP(*load_akf('data/all/korsor_afk.csv'))
 
 aep_all_sprogo_rel = aep_all_sprogo_abs / aep_all_sprogo_abs
 aep_all_nyborg_rel = aep_all_nyborg_abs / aep_all_sprogo_abs
@@ -36,7 +36,7 @@ aep_rel = np.zeros((2, 3))
 
 for i, site in enumerate(Env.sites):
     for j, case in enumerate(cases):
-        akf = load_data('data/' + case + '/' + site + '_afk.csv')
+        akf = load_akf('data/' + case + '/' + site + '_afk.csv')
         aep = Env.AEP(*akf)
         aep_abs[i, j] = aep
         aep_rel[i, j] = aep_abs[i, j] / aep_abs[i, 0]

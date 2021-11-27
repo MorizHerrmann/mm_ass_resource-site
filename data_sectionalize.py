@@ -3,8 +3,11 @@ import numpy as np
 
 # INPUT ################################################################################################################
 
-input_file = 'data/all/korsor.csv'
-out_name = 'data/all/korsor_sec/korsor'
+base = 'data/'
+case = 'all/'
+site = 'sprogo'
+input_file = base + case + site + '.csv'
+out_name = base + case + site + '_sec/' + site
 S = 12      # number of sections
 
 # SPECIFY SECTIONS #####################################################################################################

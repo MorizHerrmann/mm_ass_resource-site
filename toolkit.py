@@ -16,7 +16,7 @@ def weibull_pdf(u, a, k):
     return out
 
 
-def load_data(file):
+def load_akf(file):
   data = pd.read_csv(file)
 
   a = np.array(data['A'])
@@ -26,17 +26,13 @@ def load_data(file):
   return a, k, f
 
 
-def weibull_parameter_method(A, k, c_ie):
-    """
+def load_ak(file):
+    data = pd.read_csv(file)
 
-    :param A: weibull scale parameter
-    :param k: weibull shape parameter
-    :param c_ie: number of independent events
-    :return: alpha, beta (gumbel parameters)
-    """
-    beta = np.multiply(A, np.log10(c_ie) ** (1/k))
-    alpha = np.divide(np.multiply(A, np.log10(c_ie) ** (1/(k-1))), k)
-    return alpha, beta
+    a = np.array(data['A'])
+    k = np.array(data['k'])
+
+    return a, k
 
 
 def find_weibull(u):
