@@ -40,41 +40,23 @@ class Environment:
 
         return p
 
-    def AEP(self, wb_A, wb_k, f):
+    def AEP(self, a, k, f):
         """find the annual energy production from weibull parameters for all sections"""
-        aep_sec = np.zeros(wb_A.shape)
+        aep_sec = np.zeros(a.shape)
         u = np.linspace(0, self.u_cutout, 100)
         for m in range(len(aep_sec)):
-            aep_sec[m] = self.T * f[m] * np.trapz(np.multiply(weibull_pdf(u, wb_A[m], wb_k[m]), self.P(u)), u)
+            aep_sec[m] = self.T * f[m] * np.trapz(np.multiply(weibull_pdf(u, a[m], k[m]), self.P(u)), u)
         return np.sum(aep_sec)
 
-    def geostrophic_wind2(self, u):
-        """
-        calculate geostrophic wind at sprogo from wind speed
-        :param u: wind speed
-        :return: friction velocity
-        """
-        uf = u * self.karman / (np.log(self.z_mast / self.z0_water))
-        G = uf / self.karman * np.sqrt((np.log(uf / (self.z0_water * self.fc)) - self.A) ** 2 + self.B ** 2)
-        return G, uf
-
-    def geostrophic_wind(self, wb_A, wb_k):
-        """caclulate geostrophic wind at Sprogo from weibull distribution"""
-        u = np.multiply(wb_A, gamma(1 + 1 / wb_k))
-        uf = u * self.karman / (np.log(self.z_mast / self.z0_water))
-        G = uf / self.karman * np.sqrt((np.log(uf / (self.z0_water * self.fc)) - self.A) ** 2 + self.B ** 2)
-
-        return G, uf
-
-    def extrapolate2sites(self, file):
+    def extrapolate2sites(self, input_file, output_dir):
         """
         add geostrophic wind to data
-        :param file: file name
+        :param input_file: file name
         :return:
         """
 
         # load data
-        data = np.loadtxt(file)
+        data = np.loadtxt(input_file)
         T = len(data)
         u = data[:, 5]
         easterly = data[:, 6] <= 180
@@ -106,10 +88,20 @@ class Environment:
             data_expol = data
             data_expol[:, 5] = u_site
 
-            np.savetxt(site + '_' + file, data_expol)
+            np.savetxt(output_dir + site + '.csv', data_expol)
 
     def GDL(self, G, uf, z0):
         """implicit GDL function"""
         root = np.sqrt(np.power(np.log(np.divide(uf, z0) / self.fc) - self.A, 2) + self.B ** 2)
         out = G - np.multiply(uf / self.karman, root)
         return out
+
+    def geostrophic_wind(self, a, k):
+        """find geostrophic wind"""
+
+        u = np.multiply(a, gamma(1 + 1 / k))
+
+        uf = u * self.karman / (np.log(self.z_mast / self.z0_water))
+        G = uf / self.karman * np.sqrt((np.log(uf / (self.z0_water * self.fc)) - self.A) ** 2 + self.B ** 2)
+
+        return G, uf

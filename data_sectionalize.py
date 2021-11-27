@@ -3,8 +3,8 @@ import numpy as np
 
 # INPUT ################################################################################################################
 
-input_file = 'sprog_clean.csv'
-output_file = 'sprog'
+input_file = 'data/all/korsor.csv'
+out_name = 'data/all/korsor_sec/korsor'
 S = 12      # number of sections
 
 # SPECIFY SECTIONS #####################################################################################################
@@ -36,5 +36,5 @@ section_list[0] = np.concatenate((section_list[0], section_list[-1]))
 section_list[-1] = []
 
 # save it to files
-for s in range(S):
-    np.savetxt(output_file + f'_{s}.csv', section_list[s])
+for sec in range(S):
+    np.savetxt(out_name + f'_{sec:0>2}.csv', section_list[sec])
