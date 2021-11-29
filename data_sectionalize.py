@@ -1,3 +1,14 @@
+# SECTIONALIZE DATA - MICROMETEOROLOGY | ASSIGNMENT 4 | WIND RESOURCE AND SITE ASSESSMENT ##############################
+
+"""
+Divide data into a number of directional sections
+param: input_file: whole data set
+param: out_name: path/name of output file (without extension)
+param: S: number of sections
+return: (save the sectionalized data, for each a file)
+"""
+
+# IMPORTS ##############################################################################################################
 
 import numpy as np
 

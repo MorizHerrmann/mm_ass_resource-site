@@ -1,3 +1,13 @@
+# CALCULATE WEIBULL PARAMETERS - MICROMETEOROLOGY | ASSIGNMENT 4 | WIND RESOURCE AND SITE ASSESSMENT ###################
+
+"""
+Calculate Weibull Parameters (A/a = scale, k = shape) and frequency of occurrence f for all sections.
+param: whole_data_file: path/file with whole data (necessary to calculate number of 10 minute measurements)
+param: sect_dir: directory with the data for each section
+param: output_file: path/file output file
+return: (save A, k, f)
+"""
+
 # IMPORTS ##############################################################################################################
 
 from toolkit import *
@@ -13,8 +23,6 @@ whole_data_file = base + site + '.csv'
 sect_dir = base + site + '_sec/'
 
 output_file = base + site + '_afk.csv'
-
-save = True
 
 # COMPUTATION ##########################################################################################################
 
@@ -55,4 +63,4 @@ data = np.array([a_list, k_list, f_list]).transpose()
 
 df = pd.DataFrame(data, columns=labels)
 
-if save: df.to_csv(output_file)
+df.to_csv(output_file)

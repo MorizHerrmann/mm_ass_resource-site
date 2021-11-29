@@ -1,14 +1,32 @@
+# CLEAN DATA - MICROMETEOROLOGY | ASSIGNMENT 4 | WIND RESOURCE AND SITE ASSESSMENT #####################################
+
+"""
+Cleans data: expand timecode and remove invalid measurements (=999 or = 99.99)
+param: org_data: original data file
+param: out_name: path/name of output file
+return: (save cleaned data = [year, month, day, hour, minute, wind speed, direction])
+"""
+
+# IMPORTS ##############################################################################################################
 
 import numpy as np
+
+# INPUTS ###############################################################################################################
 
 org_data = 'data/sprogo.tsv'
 out_name = 'data/sprogo.csv'
 
+# LOAD DATA ############################################################################################################
+
 data = np.loadtxt(org_data)
+T = len(data)
+
+########################################################################################################################
 
 # new data format
-T = len(data)
 datax = np.zeros((T, 7))
+
+# transfer wind speed
 datax[:, 5] = data[:, 1]
 
 # expand time code
@@ -44,4 +62,5 @@ clean = clean[clean[:, 5] != 999, :]
 clean = clean[clean[:, 5] != 99.99, :]
 clean = clean[clean[:, 6] != 999, :]
 
+# save
 np.savetxt(out_name, clean)

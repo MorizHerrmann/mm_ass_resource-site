@@ -1,7 +1,15 @@
+# CALCULATE WEIBULL PARAMETERS - MICROMETEOROLOGY | ASSIGNMENT 4 | WIND RESOURCE AND SITE ASSESSMENT ###################
+
+"""
+Calculate Weibull Parameters (A/a = scale, k = shape). Usually used for whole data, i.e. not sectionalized.
+param: data_file: path/name of data
+param: output_file: path/name of output file
+return: (save A and k)
+"""
+
 # IMPORTS ##############################################################################################################
 
 from toolkit import *
-import os
 import pandas as pd
 
 # INPUTS ###############################################################################################################
@@ -26,7 +34,6 @@ a, k = find_weibull(u)
 
 labels = ['A', 'k']
 data = np.array([[a], [k]]).transpose()
-print(data.shape)
 
 df = pd.DataFrame(data, columns=labels)
 

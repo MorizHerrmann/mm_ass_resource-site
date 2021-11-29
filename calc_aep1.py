@@ -1,8 +1,10 @@
-########################################################################################################################
+# CALCLATE ANNUAL ENERGY PRODUCTION - MICROMETEOROLOGY | ASSIGNMENT 4 | WIND RESOURCE AND SITE ASSESSMENT ##############
 
-"""This method extrapolates for each 10 minute average the geostrophic wind and extrapolates from that the wind at the
+"""
+This method extrapolates for each 10 minute average the geostrophic wind and extrapolates from that the wind at the
 sites. The parameters A and B of the GDL are not suited for that, but for long term averages (at least a year).
-So give calc_ape2.py a chance."""
+So give calc_ape2.py a chance.
+"""
 
 # IMPORTS ##############################################################################################################
 
@@ -15,7 +17,7 @@ Env = Environment()
 
 # ALL YEARS WITH SPROGO ################################################################################################
 
-aep_all_sprogo_abs = Env.AEP(*load_akf('data/all/sprog_afk.csv'))
+aep_all_sprogo_abs = Env.AEP(*load_akf('data/all/sprogo_akf.csv'))
 aep_all_nyborg_abs = Env.AEP(*load_akf('data/all/nyborg_afk.csv'))
 aep_all_korsor_abs = Env.AEP(*load_akf('data/all/korsor_afk.csv'))
 

@@ -1,10 +1,25 @@
+# TOOLKIT - MICROMETEOROLOGY | ASSIGNMENT 4 | WIND RESOURCE AND SITE ASSESSMENT ########################################
+
+"""Functions"""
+
+# IMPORTS ##############################################################################################################
+
 import numpy as np
 import pandas as pd
 from scipy.special import gamma
 import scipy.optimize as opt
 
+# FUNCTIONS ############################################################################################################
+
 
 def weibull_pdf(u, a, k):
+    """
+
+    :param u: wind speed / variable
+    :param a: scale parameter
+    :param k: shape parameter
+    :return: weibull pdf
+    """
     f1 = np.divide(k, a)
     f2 = np.divide(u, a)
     f3 = np.power(f2, k-1)
@@ -17,16 +32,27 @@ def weibull_pdf(u, a, k):
 
 
 def load_akf(file):
-  data = pd.read_csv(file)
+    """
 
-  a = np.array(data['A'])
-  k = np.array(data['k'])
-  f = np.array(data['f'])
+    :param file: path/name of the akf-file
+    :return: weibull scale parameter, weibull shape parameter, frequency of occurrence
+    """
+    data = pd.read_csv(file)
 
-  return a, k, f
+    a = np.array(data['A'])
+    k = np.array(data['k'])
+    f = np.array(data['f'])
+
+    return a, k, f
 
 
 def load_ak(file):
+    """
+
+    :param file: path/name of the ak-file
+    :return: weibull scale parameter, weibull shape parameter
+    """
+
     data = pd.read_csv(file)
 
     a = np.array(data['A'])
@@ -36,7 +62,11 @@ def load_ak(file):
 
 
 def find_weibull(u):
-
+    """
+    finds weibull parameters with the WAsP method.
+    :param u: wind speeds / variable
+    :return: weibull scale parameter, weibull shape parameter
+    """
     mu = np.mean(u)
     mu_3 = np.mean(np.power(u, 3))
 
