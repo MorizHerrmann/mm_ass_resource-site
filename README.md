@@ -18,3 +18,4 @@ Resource Assessment:
 
 Site Assessment:
 1. <weibull_parameter_method.py:  Calculate extreme wind with Weibull parameter method. 
+2. <maxwind.m>: Calculate extreme wind with Gumbel Fitting's method and Probability weighted moments. Extrapolate extreme wind to Nyborg and Korsor
